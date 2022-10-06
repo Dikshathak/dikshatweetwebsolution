@@ -1,0 +1,97 @@
+<div class="container">
+  <div>
+    
+    <h3><img style=" border-radius: 210px;
+      height: 50px;
+      width: 50px;"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFgY93W68BAN5b40ZWcdd5Binz1Owz3VynEw&usqp=CAU">{{user.firstName}} {{user.lastName}}
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="color: rgb(41, 162, 41);" fill="currentColor" class="bi bi-patch-check-fill" viewBox="0 0 16 16">
+        <path d="M10.067.87a2.89 2.89 0 0 0-4.134 0l-.622.638-.89-.011a2.89 2.89 0 0 0-2.924 2.924l.01.89-.636.622a2.89 2.89 0 0 0 0 4.134l.637.622-.011.89a2.89 2.89 0 0 0 2.924 2.924l.89-.01.622.636a2.89 2.89 0 0 0 4.134 0l.622-.637.89.011a2.89 2.89 0 0 0 2.924-2.924l-.01-.89.636-.622a2.89 2.89 0 0 0 0-4.134l-.637-.622.011-.89a2.89 2.89 0 0 0-2.924-2.924l-.89.01-.622-.636zm.287 5.984-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7 8.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+      </svg>
+    </h3> 
+    <p style="color: rgb(92, 91, 91);">{{user.email}}</p>
+  </div>
+  <hr>
+  <div class="row justify-content-end">
+    <div>
+      <form #postForm="ngForm" (ngSubmit)="onCreateTweet(postForm.value)">
+        <div class="form-group">
+          <div class="form-outline mb-1">
+            <textarea maxlength="144" rows="6" style ="background-color: antiquewhite" class="form-control" id="tweet" name="tweet" ngModel
+              placeholder="Type your tweet..." (keyup)="setRemain(postForm)"></textarea>
+            <p style="color: grey;">(Limit {{remainChar}} characters)</p>
+          </div>
+          <div class="form-outline mb-4">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button class="btn btn-lg btn-primary">Post Tweet</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div [hidden]="tweets!=null" style="text-align: center; margin-top: 10%;">
+        <h3 style="color: rgb(45, 110, 231);">You haven't posted any tweet yet.</h3>
+      </div>
+
+      <div [hidden]="tweets==null" class="row justify-content-center">
+        <div class="col-8" style="background-color: cadetblue; padding: 20px; box-shadow: 1px 5px 10px #888888; margin-bottom: 20px;">
+          <table class="col-xs-12 col-sm-12 col-lg-12 table-bordered" style="border: rgb(189, 187, 187); border-radius: 50px;">
+
+            <tbody *ngFor="let repo of tweets.slice().reverse()">
+              <tr>
+                <td style="padding-left: 30px;">
+                  <b>{{repo.postedBy}}</b>
+                  
+                  <br>
+                  <p>{{repo.tweet}}</p>
+                  <p>
+                    <span style="margin-right: 10px; color: red">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                      </svg>
+                      {{repo.like}}
+                    </span>
+                    
+
+                    <a style="margin-right: 18px; color: rgb(43, 137, 245) " class="text-decoration-none"
+                      (click)="goToUpdate(repo.tweetid,repo.tweet)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"  class="bi bi-pencil" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                      </svg>
+                    </a>
+
+                    <a style="color: red;"  class="text-decoration-none"(click)="deleteTweet(repo.tweetid)">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                        class="bi bi-trash" viewBox="0 0 16 16">
+                        <path
+                          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                        <path fill-rule="evenodd"
+                          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                      </svg>
+                    </a>
+                  </p>
+                  
+                  <div class="grid-container" *ngIf="repo.tweetcomments!=null"
+                    style="background-color: rgba(172, 172, 172, 0.274); margin: 20px; margin-left: 0; padding: 10px; border:rgb(189, 187, 187)">
+                    <b>Replies</b>
+                    <hr>
+                    <span *ngFor="let cmt of repo.tweetcomments.slice().reverse()">
+                      <b>{{cmt.repliedBy}}</b>
+                      <p style="color: grey; font-size: 0.875em;margin: 0;padding: 0;">Replying to {{repo.postedBy}}
+                      </p>
+                      <p style="padding-left: 3px;margin: 0;">{{cmt.comment}}</p>
+                      <br>
+                    </span>
+                  </div>
+                  
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+
+
+  

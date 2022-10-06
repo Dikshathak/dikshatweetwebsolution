@@ -1,0 +1,178 @@
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>
+<!-- <div class="m-1">
+    <nav class="navbar navbar-expand-lg navbar-light bg-info">
+        <div class="container-fluid">
+            <a class="navbar-brand" (click)="addTweet()">
+                <b>TweetApp</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <a [routerLink]="['/login']" class="nav-item nav-link">Login</a>
+                    <a (click)="Register()" class="nav-item nav-link">Register</a>
+                    <a (click)="getTweets()" class="nav-item nav-link" data-toggle="modal" data-target=".bd-example-modal-lg">Tweets</a>
+                    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <table class='table'>
+                            <thead>
+                              <tr>
+                                <th>Id</th>
+                                <th>Tweet</th>
+                                <th>PostedBy</th>
+                                <th>Like</th>
+                                <th>Options</th>      
+                              </tr>
+                            </thead>
+                        
+                            <tbody>
+                              <tr *ngFor="let repo of tweets">
+                                <td>{{repo.tweetid}}</td>
+                                <td>{{repo.tweet}}</td>
+                                <td>{{repo.postedBy}}</td>
+                                <td>{{repo.like}}</td>
+                                <td>
+                                  <p>
+                                    <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                      </svg>
+                                    </button>
+                                    
+                                    <button type="button" class="btn btn-danger btn-block" >
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                      </svg>
+                                    </button>
+                                  </p> 
+                                  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form #postForm="ngForm">
+                                            <div class="form-group">
+                                              <label for="title" > Name</label>
+                                              <input type="text" class="form-control" id="postedBy" name="postedBy" ngModel/>
+                                              <label> Tweet</label>
+                                              <textarea class="form-control" id="tweet" name="tweet"ngModel></textarea>
+                                              <button class="btn btn-primary">Submit</button>
+                                          </div>
+                                          </form>
+                                        </div>
+                                        <div class="modal-footer form-group">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                          <button type="button" class="btn btn-primary">Update</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>         
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <a (click)="getUsers()" class="nav-item nav-link">All Users</a>
+                    <button type="button" class="btn btn-danger" (click)="addTweet()">Home <span class="sr-only">(current)</span></button>
+                    <a href="#" class="nav-item nav-link">Profile</a>
+                    <a href="#" class="nav-item nav-link">Messages</a>
+                    <a href="#" class="nav-item nav-link disabled" tabindex="-1">Reports</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    <a href="#" class="nav-item nav-link">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div> -->
+
+
+
+
+
+
+<!-- <div class=container>
+  <div class="row">
+      <table class='table'>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Tweet</th>
+            <th>PostedBy</th>
+            <th>Like</th>
+            <th>Options</th>      
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let repo of tweets">
+            <td>{{repo.tweetid}}</td>
+            <td>{{repo.tweet}}</td>
+            <td>{{repo.postedBy}}</td>
+            <td>{{repo.like}}</td>
+            <td>
+              <p>
+                <button type="button" class="btn btn-success btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                  </svg>
+                </button>
+                
+                <button type="button" class="btn btn-danger btn-block" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                    <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                  </svg>
+                </button>
+              </p> 
+              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form #postForm="ngForm">
+                        <div class="form-group">
+                          <label for="title" > Name</label>
+                          <input type="text" class="form-control" id="postedBy" name="postedBy" ngModel/>
+                          <label> Tweet</label>
+                          <textarea class="form-control" id="tweet" name="tweet"ngModel></textarea>
+                          <button class="btn btn-primary">Submit</button>
+                      </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer form-group">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Update</button>
+                    </div>
+                  </div>
+                </div>
+              </div>         
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+  
+   -->
+      
+  
+  
+  
+  

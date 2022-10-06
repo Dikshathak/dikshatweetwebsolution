@@ -1,0 +1,105 @@
+<div class="container" >
+  <div class="modal-dialog" > 
+    <div class="modal-content" style="background-color: ghostwhite;box-shadow: 1px 5px 10px #888888;">          
+        <div class="modal-body">        
+          <div class="text-center">                    
+            <h4 class="mt-4 mb-1 pb-1">Register Here</h4><br>
+          </div>
+            
+              <form [formGroup]="registerForm" #postForm="ngForm" (ngSubmit)="Register(postForm.value)" >
+                <!-- First Name -->
+                <div class="form-group" >                    
+                    <div class="form-outline mb-4">
+                      <input type="text" class="form-control" formControlName="first_name" id="first_name" name="first_name"  placeholder="Enter First Name" required />
+                      <span  style="color: red;" *ngIf="first_name && first_name.invalid && first_name.touched">Please enter First Name</span>
+                    </div>
+                </div>
+                <!-- Last Name -->
+                <div class="form-group">
+                    <div class="form-outline mb-4">
+                      <input type="text" class="form-control" formControlName="last_name" id="last_name" name="last_name"  placeholder="Enter Last Name"/>
+                    </div>
+                </div>
+
+              <!-- Contact Number -->
+              <!-- <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="contactNumber" id="contactNumber" name="contactNumber"  placeholder="Enter Contact Number"/>
+                  </div>
+              </div> -->
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <b> Select Gender</b><br>
+                    <input type="radio"  formControlName="gender" id="gender1" name="gender"    placeholder="Gender" required value="Male"/>
+                    <label for="gender1">Male</label>
+                    <input type="radio"  formControlName="gender" id="gender2" name="gender" style="margin-left: 10px;"  placeholder="Gender" required value="Female"/>
+                    <label for="gender2">Female</label><br>
+                    <span style="color: red;" *ngIf="gender && gender.invalid && gender.touched">Please enter Gender.</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <div class="input-group date form-outline mb-4">
+                    <input type="date" class=" form-control" formControlName="dob" id="dob" name="dob"  placeholder="Date of Birth"/>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group" >
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="email" id="email" name="email"  placeholder="Email"/>
+                    <span style="color: red;" *ngIf="email && email.invalid && email.touched">Please enter a valid email id.</span>
+                  </div>
+                </div>
+
+                <!-- LoginID -->
+                <!-- <div class="form-group" >
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="loginID" id="loginID" name="loginID"  placeholder="Login ID"/>
+                    <span  style="color: red;" *ngIf="loginID && loginID.invalid && loginID.touched">Please enter Login ID</span>
+                  </div>
+                </div> -->
+
+                <!-- Password -->
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="password" id="password" name="password" placeholder="Password" required/>
+                    <span style="color: red;" *ngIf="password && password.invalid && password.touched">Please enter Password</span>
+                  </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                  <div class="form-outline mb-4">
+                    <input type="text" class="form-control" formControlName="confirmPassword" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required/>
+                    <span style="color: red;" *ngIf="confirmPassword && confirmPassword.invalid && confirmPassword.touched">Please enter Confirm Password</span>
+                  </div>
+                </div>
+
+                
+                <!-- Register Button -->
+                <div class="form-group">
+                    <div class="form-outline mb-4 justify-content-end">
+                      <input type="reset" value="Reset" class="bg-secondary form-control">
+                      <button [disabled]="registerForm.invalid" class="btn btn-primary form-control">Register</button>
+                      
+                    </div>                    
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+                        
+                      
+    
+  
+</div>
+
+
+<!-- <form [formGroup]="registerForm" >
+  <input type="text" placeholder="Enter email" formControlName="email">
+  <br>
+  <span *ngIf="email && email.invalid">This is the error message.</span>
+
+</form> -->

@@ -1,0 +1,26 @@
+<div class="m-1">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(38, 136, 211);">
+        <div class="container-fluid">
+            <a class="navbar-brand" [routerLink]="['/add-tweet/'+response]" >
+                <img src="assets/images/Twitter 2.png" width="50">
+                <b>TweetApp</b>
+            </a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+                <div class="navbar-nav" style="margin-right: 190px;" >
+                    <a [routerLink]="['/login']" style="margin-right: 50px; color: black" class="nav-item nav-link">Login</a>
+                    <a [routerLink]="['/register']" style="margin-right: 50px;color: black" class="nav-item nav-link">Register</a>
+                    <a (click)="getUser()" style="margin-right: 50px;color: black" class="nav-item nav-link">Post</a>
+                    <a [routerLink]="['/tweets']" style="margin-right:  50px;color: black" class="nav-item nav-link" >All Tweets</a>                    
+                    <a [routerLink]="['/users']" style="margin-right: 50px;color: black" class="nav-item nav-link">Users</a> 
+            
+                    <button (click)="logout()" style="margin-right: 50px;color: black" class="nav-item nav-link btn-primary">Logout</button>
+                   
+                </div>
+                    
+            </div>
+        </div>
+    </nav>
+</div>

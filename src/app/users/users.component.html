@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row justify-content-end">
+      <div class="col-12"  style="box-shadow: 1px 5px 10px #888888;margin-bottom: 20px;margin-top: 20px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>                    
+                </tr>
+                
+            </thead>
+            <tbody>
+                <tr *ngFor="let repo of users">
+                    <td style="color: blue">{{repo.firstName}} {{repo.lastName}}</td>
+                    <td style="color: blue">{{repo.gender}}</td>
+                    <td style="color: blue">{{repo.email}}</td>  
+                    <td style="color: blue">{{repo.dob}}</td>
+                </tr>                  
+            </tbody>
+        </table>        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
